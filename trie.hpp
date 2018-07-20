@@ -3,9 +3,6 @@
 
 #include <memory>
 
-class TrieNode;
-class Trie;
-
 inline int char_idx(const char c) { return int(c) - 'a'; }
 
 class TrieNode {
@@ -21,17 +18,23 @@ private:
     int count_prefix(const char*) const;
 };
 
+
 /*
 Trie for handling words (null-terminated const char arrays)
 consisting of lowercase alphabetic characters [a-z].
 */
 class Trie {
 public:
-    void add(const char* s) { first_chars[char_idx(*s)].add(s); }
+    void add(const char* s)
+    {
+        first_chars[char_idx(*s)].add(s);
+    }
+    
     bool contains_word(const char* s) const
     {
         return first_chars[char_idx(*s)].contains_word(s);
     }
+    
     int count_prefix(const char* s) const
     {
         return first_chars[char_idx(*s)].count_prefix(s);
@@ -41,4 +44,4 @@ private:
     TrieNode first_chars[26];
 };
 
-#endif
+#endif  // __TRIE__H
