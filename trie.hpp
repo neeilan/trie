@@ -22,8 +22,8 @@ private:
 };
 
 /*
-Trie for handling words (null-terminated char arrays)
-consisting of lowercase alphebetic characterz [a-z].
+Trie for handling words (null-terminated const char arrays)
+consisting of lowercase alphabetic characters [a-z].
 */
 class Trie {
 public:
