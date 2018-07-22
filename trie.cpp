@@ -9,14 +9,15 @@ using std::unique_ptr;
 void TrieNode::add(const char* cstr)
 {
     count++;
-    if (*(cstr + 1) == '\0') {
+
+    if (*(cstr + 1) == NULL_TERM) {
         terminal = true;
     }
     else {
         const int idx = char_idx(*(cstr + 1));
 
         if (children[idx] == nullptr)
-            children[idx] = unique_ptr<TrieNode>(new TrieNode);
+            children[idx] = std::make_unique<TrieNode>();
 
         children[idx]->add(cstr + 1);
     }
@@ -27,7 +28,7 @@ bool TrieNode::contains_word(const char* cstr) const
     if (count == 0)
         return false;
 
-    if (*(cstr + 1) == '\0') {
+    if (*(cstr + 1) == NULL_TERM) {
         return terminal;
     }
     else {
@@ -45,7 +46,7 @@ int TrieNode::count_prefix(const char* cstr) const
     if (count == 0)
         return 0;
 
-    if (*(cstr + 1) == '\0') {
+    if (*(cstr + 1) == NULL_TERM) {
         return count;
     }
     else {

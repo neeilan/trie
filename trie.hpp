@@ -3,6 +3,8 @@
 
 #include <memory>
 
+#define NULL_TERM '\0'
+
 inline int char_idx(const char c) { return int(c) - 'a'; }
 
 class TrieNode {
@@ -11,7 +13,7 @@ class TrieNode {
 private:
     int count = 0;
     bool terminal = false;
-    std::unique_ptr<TrieNode> children[26] = { std::unique_ptr<TrieNode>(nullptr) };
+    std::unique_ptr<TrieNode> children[26];
 
     void add(const char*);
     bool contains_word(const char*) const;
